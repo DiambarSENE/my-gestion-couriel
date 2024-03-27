@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: conteneur-app-frontend-gestion-couriel
+    image: diambarsene/app-gestion-couriel-frontend-react:v1 # Remplacez par le nom et la version de votre image
+    restart: always
+    ports:
+      - "8081:80" # Utilisez le port que vous souhaitez exposer
+    environment:
+      REACT_APP_API_URL_PARAMETRE: http://app-gestion-couriel-api:8087 # Remplacez par l'URL de votre API backend
+    depends_on:
+      - app-gestion-couriel-api
+    networks:
+      - networks-gestion-couriel
+
+
+
+
+#volumes:
+  #parametres-db-data:
+  #users-db-data:
+networks:
+  networks-gestion-couriel:
+    driver: bridge
+
